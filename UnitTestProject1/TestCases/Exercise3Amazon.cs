@@ -34,13 +34,15 @@ namespace UnitTestProject1
 
         public bool StartAsConsoleApp { get => startAsConsoleApp; set => startAsConsoleApp = value; }
 
+        #region Initialization
         [TestInitialize] 
         public void BeforeEachTest()
         {
             InitializeFramework(StartAsConsoleApp);
             Pages.AmazonPage.InitElements();
             Parameters.SetCredentials();
-        }        
+        }
+        #endregion Initialization
 
         [TestCategory("Shopping"), Priority(1), TestMethod]
         public void AmazonTest()
@@ -91,10 +93,12 @@ namespace UnitTestProject1
             Log.Info("All validation passed");
         }
 
+        #region Cleanup
         [TestCleanup]
         public void AfterEachTest()
         {
             CleanUpTest();
         }
+        #endregion Cleanup
     }
 }
